@@ -2,6 +2,7 @@ const card = document.querySelector(".card");
 const cardTitle = document.querySelector(".card-title");
 const cardDescreption = document.querySelector(".card-description");
 const cardImage = document.querySelector(".card-image");
+const downloadBtn = document.getElementById("download");
 
 const color = document.getElementById("color");
 const fontSize = document.getElementById("font-size");
@@ -85,4 +86,16 @@ shadow.addEventListener("input",()=>{
 colors.forEach(c=>{
     console.log(c);
     color.innerHTML += `<option value = ${c.hex} style = "background-color : ${c.hex};"></option>`
+})
+
+
+
+
+// -------------------------------
+
+downloadBtn.addEventListener("click",()=>{
+    html2canvas(card).then(canvas =>{
+        let dataUrl = canvas.toDataURL("image/png");
+        download(dataUrl,"card.png","image/png")
+    })
 })
